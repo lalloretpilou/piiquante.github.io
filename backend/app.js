@@ -1,8 +1,9 @@
 const express = require('express');
 const userRoutes = require('./routes/user.routes');
+const sauceRoutes = require('./routes/sauce.routes');
 const app = express();
 const mongoose = require('mongoose');
-
+const path = require('path');
 
 mongoose.connect('mongodb+srv://pierrelouis:Pilou95@cluster0.azp3qwq.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
@@ -19,5 +20,6 @@ mongoose.connect('mongodb+srv://pierrelouis:Pilou95@cluster0.azp3qwq.mongodb.net
 
 app.use(express.json());
 app.use('/api/auth', userRoutes);
+app.use('/api/sauces', sauceRoutes);
 
 module.exports = app;
