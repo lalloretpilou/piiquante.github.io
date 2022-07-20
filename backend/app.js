@@ -19,6 +19,7 @@ mongoose.connect('mongodb+srv://pierrelouis:Pilou95@cluster0.azp3qwq.mongodb.net
   });
 
 app.use(express.json());
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/auth', userRoutes);
 app.use('/api/sauces', sauceRoutes);
 
