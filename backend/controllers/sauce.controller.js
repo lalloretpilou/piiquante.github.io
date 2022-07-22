@@ -12,7 +12,7 @@ exports.createSauce = (req, res) => {
         usersDisliked: []
     });
     sauce.save()
-        .then(() => res.status(201).json({ message: 'Sauce enregistrée !' }))
+        .then(() => res.status(201).json({ message: 'La sauce a été enregistrée' }))
         .catch(error => res.status(400).json({ error }));
 };
 
@@ -45,10 +45,10 @@ exports.updateSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
         .then((sauce) => {
             if (sauce.userId != req.auth.userId) {
-                res.status(401).json({ message: 'Not authorized' });
+                res.status(401).json({ message: 'Vous n êtes pas autorisée' });
             } else {
                 Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
-                    .then(() => res.status(200).json({ message: 'Objet modifié!' }))
+                    .then(() => res.status(200).json({ message: 'La sauce a bien été mise à jour' }))
                     .catch(error => res.status(401).json({ error }));
             }
         })
@@ -61,12 +61,12 @@ exports.deleteSauce = (req, res) => {
     Sauce.findOne({ _id: req.params.id })
         .then(sauce => {
             if (sauce.userId != req.auth.userId) {
-                res.status(401).json({ message: 'Not authorized' });
+                res.status(401).json({ message: 'Vous n êtes pas autorisée' });
             } else {
                 const filename = sauce.imageUrl.split('/images/')[1];
                 fs.unlink(`images/${filename}`, () => {
                     Sauce.deleteOne({ _id: req.params.id })
-                        .then(() => { res.status(200).json({ message: 'Objet supprimé !' }) })
+                        .then(() => { res.status(200).json({ message: 'La sauce a été supprimée' }) })
                         .catch(error => res.status(401).json({ error }));
                 });
             }
@@ -86,7 +86,7 @@ exports.likeSauce = (req, res, next) => {
                     likes: 1
                 }, $push: { usersLiked: req.body.userId }
             })
-            .then(() => res.status(200).json({ message: 'Objet modifié !' }))
+            .then(() => res.status(200).json({ message: 'La sauce a bien été mise à jour' }))
             .catch(error => res.status(400).json({ error }));
     }
     // on dislike la sauce
@@ -97,7 +97,7 @@ exports.likeSauce = (req, res, next) => {
                     dislikes: 1
                 }, $push: { usersDisliked: req.body.userId }
             })
-            .then(() => res.status(200).json({ message: 'Objet modifié !' }))
+            .then(() => res.status(200).json({ message: 'La sauce a bien été mise à jour' }))
             .catch(error => res.status(400).json({ error }));
     }
     // on supprime le vote
@@ -111,7 +111,7 @@ exports.likeSauce = (req, res, next) => {
                         likes: -1
                     }, $push: { usersLiked: req.body.userId }
                 })
-                .then(() => res.status(200).json({ message: 'Objet modifié !' }))
+                .then(() => res.status(200).json({ message: 'La sauce a bien été mise à jour' }))
                 .catch(error => res.status(400).json({ error }));
         }
         else {
@@ -121,7 +121,7 @@ exports.likeSauce = (req, res, next) => {
                         dislikes: -1
                     }, $push: { usersLiked: req.body.userId }
                 })
-                .then(() => res.status(200).json({ message: 'Objet modifié !' }))
+                .then(() => res.status(200).json({ message: 'La sauce a bien été mise à jour' }))
                 .catch(error => res.status(400).json({ error }));
         }
     })
