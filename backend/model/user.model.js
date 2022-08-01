@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-const validator = require('mongoose-type-email');
+
+/*
+// Liste les liste des variables des utilisateurs
+*/
 
 const userSchema = mongoose.Schema({
-    email: { type: validator, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
 });
 

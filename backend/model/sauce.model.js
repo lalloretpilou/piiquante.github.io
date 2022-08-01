@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 
+/*
+// Liste les liste des variables des sauces
+*/
+
 const sauceSchema = mongoose.Schema({
     userId: { type: String, required: true },
     name: { type: String, required: true },

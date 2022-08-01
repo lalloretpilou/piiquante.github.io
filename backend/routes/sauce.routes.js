@@ -4,6 +4,11 @@ const auth = require('../api/auth');
 const multer = require('../api/multer-config');
 const sauceCtrl = require('../controllers/sauce.controller');
 
+/*
+// Liste les routes des sauces. 
+// Toutes les routes sont sécurisées grâce a auth.
+*/
+
 router.get('/', auth, sauceCtrl.getAllSauce);
 router.get('/:id', auth, sauceCtrl.getOneSauce);
 router.post('/', auth, multer, sauceCtrl.createSauce);

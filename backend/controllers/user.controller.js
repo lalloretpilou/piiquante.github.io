@@ -3,6 +3,10 @@ const bcrypt = require ('bcrypt');
 const jwt = require('jsonwebtoken');
 
 
+/*
+// Permet de créer son compte
+*/
+
 exports.signup = (req, res, next) => {
     if (req.body.password && isValidEmail(req.body.email))
     {
@@ -25,7 +29,12 @@ exports.signup = (req, res, next) => {
     }
   };
 
+/*
+// Permet de se connecter
+*/
+
   exports.login = (req, res, next) => {
+    // permet de verifier le regex mail et si le password a bien ete saisie
     if (req.body.password && isValidEmail(req.body.email))
     {
     User.findOne({ email: req.body.email })

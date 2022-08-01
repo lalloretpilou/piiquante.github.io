@@ -1,5 +1,10 @@
 const multer = require('multer');
 
+
+/*
+// Multer est un plugin qui permet d'uploader des images et de les utiliser dans le site
+*/
+
 const MIME_TYPES = {
   'image/jpg': 'jpg',
   'image/jpeg': 'jpg',

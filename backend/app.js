@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 const path = require('path');
 const dotenv = require('dotenv').config();
 
+/*
+// Permet de se connecter a la BDD mongose atlas.
+*/
 mongoose.connect(`mongodb+srv://${process.env.USER_ID}:${process.env.USER_KEY}@cluster0.azp3qwq.mongodb.net/?retryWrites=true&w=majority`,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
